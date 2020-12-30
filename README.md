@@ -31,6 +31,7 @@ Below are the few tasks and the roadmap of this personal project. It lists out w
 Hi! I am Paingha Joe Alagoa Jnr. I am a recent college graduate with 4 years experience using Golang and Javascript to build scalable and user friendly applications.
 <br />
 [Linked In](https://www.linkedin.com/in/paingha-alagoa-joe/)
+<br />
 [Twitter](https://twitter.com/painghajnr)
 
 ## Acknowledgments
