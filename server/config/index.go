@@ -6,6 +6,7 @@ package config
 
 import (
 	"flag"
+	"fmt"
 	"log"
 
 	"github.com/joho/godotenv"
@@ -51,6 +52,11 @@ func GetConnectionContext() string {
 	if *dbContext {
 		return DevDbURL(BuildDevDBConfig())
 	}
+	fmt.Println(ProdDbURL(BuildProdDBConfig()))
+	fmt.Println(ProdDbURL(BuildProdDBConfig()))
+	fmt.Println(ProdDbURL(BuildProdDBConfig()))
+	fmt.Println(ProdDbURL(BuildProdDBConfig()))
+	fmt.Println(ProdDbURL(BuildProdDBConfig()))
 	return ProdDbURL(BuildProdDBConfig())
 }
 
@@ -65,7 +71,7 @@ func InitConfig(cfg interface{}) error {
 
 //LoadEnvFile - loads env file
 func LoadEnvFile() {
-	if err := godotenv.Load("../.env"); err != nil {
+	if err := godotenv.Load("example.env"); err != nil {
 		log.Fatalf("Error loading .env file %v", err)
 	}
 }
