@@ -18,12 +18,16 @@ A personal process to learn gRPC and its differences from Rest APIs. I have deci
 In order to setup project and run it successfully you will need docker installed on your machine.
 
 <ul>
+    <li>cd webapp && yarn install</li>
+    <li>yarn start && cd ..</li>
     <li>Run docker compose up -d</li>
     <li>React App wil be running at localhost:3000</li>
     <li>Envoy Proxy will be running at localhost:8080 (Proxying any grpc connections from 9000 to 8080 and vice versa</li>
     <li>Golang gRPC server will be runnig at localhost:9000</li>
     <li>pgAdmin4 web ui will be runnign at localhost:5050</li>
 </ul>
+
+(View console of web browser for getSermon response)
 
 A personal project to learn gRPC and its differences from Rest APIs. I have decided to re-implement a church website API with gRPC.
 
@@ -34,6 +38,7 @@ Below are the few tasks and the roadmap of this personal project. It lists out w
 <ul>
     <li>Setup React App with gRPC Web - Done</li>
     <li>Setup Envoy Proxy - Done</li>
+    <li>Dockerize React App</li>
     <li>Add Tests</li>
     <li>Implement Client-side streaming in gRPC</li>
     <li>Implement Server-side streaming in gRPC</li>
