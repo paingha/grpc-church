@@ -5,7 +5,6 @@
 - [Introduction](#introduction)
 - [Install and Run](#install-run)
 - [TODO](#todo)
-- [Build Process](#build-process)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
@@ -24,7 +23,7 @@ In order to setup project and run it successfully you will need docker installed
     <li>React App wil be running at localhost:3000</li>
     <li>Envoy Proxy will be running at localhost:8080 (Proxying any grpc connections from 9000 to 8080 and vice versa</li>
     <li>Golang gRPC server will be runnig at localhost:9000</li>
-    <li>pgAdmin4 web ui will be runnign at localhost:5050</li>
+    <li>pgAdmin4 web ui will be running at localhost:5050</li>
 </ul>
 
 (View console of web browser for getSermon response)
