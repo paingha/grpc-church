@@ -20,8 +20,6 @@ services:
       - "5432"
     ports:
       - "5432:5432"
-    #networks:
-      #- postgres
     restart: on-failure
   
   pgadmin:
@@ -35,16 +33,13 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     volumes:
        - pgadmin:/root/.pgadmin
-    #networks:
-      #- postgres
     restart: on-failure
 
   server:
-    ##image: joeyjnr/churchserver:1.0
     container_name: grpc-church-api-1
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: ./server/Dockerfile
       args:
         service: server
     restart: on-failure
@@ -69,8 +64,6 @@ services:
       ENV_DEV_DB_DATABASE: ${ENV_DEV_DB_DATABASE}
       ENV_DEV_DB_SSL : ${ENV_DEV_DB_SSL}
       DATABASE_DEBUG_MODE: "true"
-    #networks:
-      #- postgres
     depends_on:
       - postgres
       - envoy
@@ -82,6 +75,26 @@ services:
       - "8080"
     ports:
       - "8080:8080"
+
+  email:
+    container_name: grpc-church-email-1
+    build:
+      context: ./
+      dockerfile: ./email/Dockerfile
+      args:
+        service: email
+    restart: on-failure
+    labels:
+      NAME: "email"
+    expose:
+      - "9001"
+    ports:
+      - "9001:9001"
+    env_file: example.env
+    environment:
+      ENV_EMAIL_SENDER_NAME: ${ENV_EMAIL_SENDER_NAME}
+      ENV_SENDER_EMAIL: ${ENV_SENDER_EMAIL}
+      ENV_SENDGRID_API_KEY: ${ENV_SENDGRID_API_KEY}
 
 networks:
   postgres:

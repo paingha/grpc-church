@@ -1,0 +1,97 @@
+// Copyright 2020 Paingha Joe Alagoa. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+syntax = "proto3";
+
+option go_package = "user";
+
+service User {
+    rpc LoginUser(LoginUserRequest) returns (LoginUserResponse){};
+    rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse){};
+    rpc ForgotUser(ForgotUserRequest) returns (EmptyUserResponse){};
+    rpc GetUser(GetUserRequest) returns (GetUserResponse){};
+    rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse){};
+    rpc DeleteUser(DeleteUserRequest) returns (EmptyUserResponse){};
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse){};
+}
+
+message LoginUserRequest {
+    string Email = 1;
+    string Password = 2;
+}
+
+message LoginUserResponse {
+    int32 ID = 1;
+    string Token = 2;
+    string Email = 3;
+    string FirstName = 4;
+    string LastName = 5;
+    string Message = 6;
+}
+
+message ForgotUserRequest {
+    string Email = 1;
+}
+
+message RegisterUserRequest {
+    string Email = 1;
+    string Password = 2;
+    string FirstName = 3;
+    string LastName = 4;
+}
+
+message RegisterUserResponse {
+    string Email = 1;
+    string FirstName = 3;
+    string LastName = 4;
+    bool EmailVerified = 5;
+    string Message = 6;
+}
+
+message EmptyUserResponse {
+
+}
+
+message UpdateUserRequest {
+    int32 ID = 1;
+    string Email = 2;
+    string FirstName = 3;
+    string LastName = 4;
+}
+
+message UpdateUserResponse {
+    string Email = 1;
+    string FirstName = 3;
+    string LastName = 4;
+    string Message = 6;
+}
+
+message GetUserRequest {
+    int32 ID = 1;
+}
+
+message GetUserResponse {
+    int32 ID = 1;
+    string Email = 2;
+    string FirstName = 3;
+    string LastName = 4;
+    bool EmailVerified = 5;
+    string Message = 6;
+}
+
+message GetAllUsersRequest {
+    int32 PageNumber = 1;
+    int32 ResultPerPage = 2;
+}
+
+message GetAllUsersResponse {
+    int32 TotalCount = 1;
+    int32 PageNumber = 2;
+    int32 ResultPerPage = 3;
+    repeated GetUserResponse Users = 4;
+}
+
+message DeleteUserRequest {
+    int32 ID = 1;
+}

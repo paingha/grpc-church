@@ -1,6 +1,15 @@
-.PHONY: protos
-protos:
+.PHONY: proto-sermon
+proto-sermon:
 	protoc -I protos/ protos/sermon.proto --go_out=protos/sermon --go-grpc_out=protos/sermon
+
+.PHONY: proto-user
+proto-user:
+	protoc -I protos/ protos/user.proto --go_out=protos/user --go-grpc_out=protos/user
+
+.PHONY: proto-email
+proto-user:
+	protoc -I protos/ protos/email.proto --go_out=protos/email --go-grpc_out=protos/email
+
 
 .PHONY: grpc-web
 grpc-web:

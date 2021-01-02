@@ -1,0 +1,90 @@
+## Copyright 2020 Paingha Joe Alagoa. All rights reserved.
+## Use of this source code is governed by a BSD-style
+## license that can be found in the LICENSE file.
+
+version: "3.7"
+services:
+
+  postgres:
+    container_name: postgres-container
+    image: postgres:alpine
+    env_file: example.env
+    environment:
+      POSTGRES_DB: ${ENV_DEV_DB_USER}
+      POSTGRES_USER: ${ENV_DEV_DB_USER}
+      POSTGRES_PASSWORD: ${ENV_DEV_DB_PASS}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    #networks:
+      #- postgres
+    restart: on-failure
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    env_file: example.env
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+       - pgadmin:/root/.pgadmin
+    #networks:
+      #- postgres
+    restart: on-failure
+
+  server:
+    ##image: joeyjnr/churchserver:1.0
+    container_name: grpc-church-api-1
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        service: server
+    restart: on-failure
+    labels:
+      NAME: "server"
+    expose:
+      - "9000"
+    ports:
+      - "9000:9000"
+    env_file: example.env
+    environment:
+      ENV_PROD_DB_HOST: ${ENV_PROD_DB_HOST}
+      ENV_PROD_DB_PORT: ${ENV_PROD_DB_PORT}
+      ENV_PROD_DB_USER: ${ENV_PROD_DB_USER}
+      ENV_PROD_DB_PASS: ${ENV_PROD_DB_PASS}
+      ENV_PROD_DB_DATABASE: ${ENV_PROD_DB_DATABASE}
+      ENV_PROD_DB_SSL: ${ENV_PROD_DB_SSL}
+      ENV_DEV_DB_HOST: ${ENV_DEV_DB_HOST}
+      ENV_DEV_DB_PORT: ${ENV_DEV_DB_PORT}
+      ENV_DEV_DB_USER: ${ENV_DEV_DB_USER}
+      ENV_DEV_DB_PASS: ${ENV_DEV_DB_PASS}
+      ENV_DEV_DB_DATABASE: ${ENV_DEV_DB_DATABASE}
+      ENV_DEV_DB_SSL : ${ENV_DEV_DB_SSL}
+      DATABASE_DEBUG_MODE: "true"
+    depends_on:
+      - postgres
+      - envoy
+
+  envoy:
+    build: ./envoy
+    restart: always
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:

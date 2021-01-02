@@ -1,3 +1,7 @@
+// Copyright 2020 Paingha Joe Alagoa. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 import logo from '../logo.svg';
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"

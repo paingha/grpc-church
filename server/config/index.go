@@ -6,7 +6,6 @@ package config
 
 import (
 	"flag"
-	"fmt"
 	"log"
 
 	"github.com/joho/godotenv"
@@ -52,11 +51,6 @@ func GetConnectionContext() string {
 	if *dbContext {
 		return DevDbURL(BuildDevDBConfig())
 	}
-	fmt.Println(ProdDbURL(BuildProdDBConfig()))
-	fmt.Println(ProdDbURL(BuildProdDBConfig()))
-	fmt.Println(ProdDbURL(BuildProdDBConfig()))
-	fmt.Println(ProdDbURL(BuildProdDBConfig()))
-	fmt.Println(ProdDbURL(BuildProdDBConfig()))
 	return ProdDbURL(BuildProdDBConfig())
 }
 

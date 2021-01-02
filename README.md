@@ -19,10 +19,12 @@ In order to setup project and run it successfully you will need docker installed
 <ul>
     <li>cd webapp && yarn install</li>
     <li>yarn start && cd ..</li>
-    <li>Run docker compose up -d</li>
+    <li>Run docker-compose up -d</li>
     <li>React App wil be running at localhost:3000</li>
     <li>Envoy Proxy will be running at localhost:8080 (Proxying any grpc connections from 9000 to 8080 and vice versa</li>
-    <li>Golang gRPC server will be runnig at localhost:9000</li>
+    <li>Golang gRPC server will be running at localhost:9000</li>
+    <li>Golang gRPC email service will be running at localhost:9001</li>
+    <li>Postgres Database will be running at localhost:5432</li>
     <li>pgAdmin4 web ui will be running at localhost:5050</li>
 </ul>
 
