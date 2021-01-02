@@ -187,7 +187,7 @@ func SendVerifyPhoneUser(user *User, id int32, code string, medium string) error
 	}
 	/*
 		message := Message{
-			Content: "NSU IRB Verification Code: " + code,
+			Content: "SMS Verification Code: " + code,
 			To:      user.PhoneNumber,
 			Medium:  medium,
 		}

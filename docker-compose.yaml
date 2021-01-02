@@ -64,6 +64,8 @@ services:
       ENV_DEV_DB_DATABASE: ${ENV_DEV_DB_DATABASE}
       ENV_DEV_DB_SSL : ${ENV_DEV_DB_SSL}
       DATABASE_DEBUG_MODE: "true"
+      JWT_SECRET: ${JWT_SECRET}
+      ENV_BASE_URL: ${ENV_BASE_URL}
     depends_on:
       - postgres
       - envoy

@@ -43,6 +43,8 @@ type SystemConfig struct {
 	DevDBPass      string `env:"ENV_DEV_DB_PASS"`
 	DevDBDatabase  string `env:"ENV_DEV_DB_DATABASE"`
 	DevDBSSL       string `env:"ENV_DEV_DB_SSL"`
+	JWT_SECRET     string `env:"JWT_SECRET"`
+	ENV_BASE_URL   string `env:"ENV_BASE_URL"`
 }
 
 //GetConnectionContext - returns database connection string based on environment
